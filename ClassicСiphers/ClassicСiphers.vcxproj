@@ -150,6 +150,11 @@
     <ClInclude Include="Playfir.h" />
     <ClInclude Include="Vigenere.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="DecryptedCaesar.txt" />
+    <Text Include="EncryptedCaesar.txt" />
+    <Text Include="Text.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
