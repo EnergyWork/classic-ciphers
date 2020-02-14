@@ -1,11 +1,11 @@
 #include "Caesar.h"
 
-size_t Caesar::index(char a)
+int Caesar::index(char a)
 {
-	for (size_t i = 0; i < alphabet.size(); i++)
+	for (size_t letter = 0; letter < alphabet.size(); letter++)
 	{
-		if (alphabet[i] == a)
-			return i;
+		if (alphabet[letter] == a)
+			return letter;
 	}
 	return NULL;
 }
@@ -17,9 +17,21 @@ int Caesar::GetOffset()
 {
 	return offset;
 }
-string Caesar::Encrypted(string text)
+void Caesar::ReadFile(string &text, string file)
 {
-	ofstream out("EncryptedCaesar.txt", std::ios::app);
+	ifstream in(file);
+	string tmp;
+	text.clear();
+	while (!in.eof())
+	{
+		in >> tmp;
+		text += tmp;
+	}
+	in.close();
+}
+string Caesar::Encrypted(string file)
+{
+	ReadFile(text, file);
 	int loop;
 	transform(text.begin(), text.end(), text.begin(), tolower);
 	for (size_t letter = 0; letter < text.size(); letter++)
@@ -29,11 +41,27 @@ string Caesar::Encrypted(string text)
 			loop = alphabet.size();
 		encText += alphabet[index(text[letter]) + GetOffset() - loop];
 	}
-	out << encText << endl;
+	ofstream out("EncryptedCaesar.txt");
+	out << encText;
+	out.close();
 	return encText;
 }
 string Caesar::Decrypted()
 {
-
-	return "NULL";
+	ReadFile(text, "EncryptedCaesar.txt");
+	if (text.empty())
+		return "EncryptedCaesar is empty . . .";
+	int loop;
+	transform(text.begin(), text.end(), text.begin(), tolower);
+	for (size_t letter = 0; letter < text.size(); letter++)
+	{
+		loop = 0;
+		if (index(text[letter]) - GetOffset() < 0)
+			loop = alphabet.size();
+		decText += alphabet[index(text[letter]) - GetOffset() + loop];
+	}
+	ofstream out("DecryptedCaesar.txt");
+	out << decText;
+	out.close();
+	return decText;
 }
