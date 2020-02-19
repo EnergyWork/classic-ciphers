@@ -41,16 +41,16 @@ string Caesar::Encrypted(string file)
 			loop = alphabet.size();
 		encText += alphabet[index(text[letter]) + GetOffset() - loop];
 	}
-	ofstream out("EncryptedCaesar.txt");
+	ofstream out(encFile);
 	out << encText;
 	out.close();
 	return encText;
 }
 string Caesar::Decrypted()
 {
-	ReadFile(text, "EncryptedCaesar.txt");
+	ReadFile(text, encFile);
 	if (text.empty())
-		return "EncryptedCaesar is empty . . .";
+		return "EncryptedCaesar.txt is empty . . .";
 	int loop;
 	transform(text.begin(), text.end(), text.begin(), tolower);
 	for (size_t letter = 0; letter < text.size(); letter++)
@@ -60,7 +60,7 @@ string Caesar::Decrypted()
 			loop = alphabet.size();
 		decText += alphabet[index(text[letter]) - GetOffset() + loop];
 	}
-	ofstream out("DecryptedCaesar.txt");
+	ofstream out(decFile);
 	out << decText;
 	out.close();
 	return decText;

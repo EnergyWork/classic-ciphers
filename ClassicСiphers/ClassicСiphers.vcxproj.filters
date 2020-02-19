@@ -55,5 +55,11 @@
     <Text Include="DecryptedCaesar.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="EncryptedVigenere.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="DecryptedVigenere.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>
