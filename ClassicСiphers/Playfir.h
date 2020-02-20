@@ -4,12 +4,15 @@
 #include <fstream>
 using namespace std;
 
+typedef pair<int, int> Pair;
+
 class Playfir
 {
 	vector<string> cipherMatr;
 	string text, encText, decText;
-	int indexRow(char a, string str);
-	void ReadFile(string &text, string file);
+	pair<int, int> index(char a);
+	string encFile = "EncryptedPlayfir.txt", decFile = "DecryptedPlayfir.txt";
+	void ReadFile(string& text, string file);
 	string EncryptedPairLetters(char l, char r);
 	void Analyze();
 public:
