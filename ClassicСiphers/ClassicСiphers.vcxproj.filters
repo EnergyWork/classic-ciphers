@@ -44,6 +44,9 @@
     <ClInclude Include="Hill.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Entropy.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text.txt">
@@ -59,6 +62,12 @@
       <Filter>Файлы ресурсов</Filter>
     </Text>
     <Text Include="DecryptedVigenere.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="EncryptedPlayfir.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="DecryptedPlayfir.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

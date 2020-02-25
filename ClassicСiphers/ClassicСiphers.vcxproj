@@ -146,14 +146,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Caesar.h" />
+    <ClInclude Include="Entropy.h" />
     <ClInclude Include="Hill.h" />
     <ClInclude Include="Playfir.h" />
     <ClInclude Include="Vigenere.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="DecryptedCaesar.txt" />
+    <Text Include="DecryptedPlayfir.txt" />
     <Text Include="DecryptedVigenere.txt" />
     <Text Include="EncryptedCaesar.txt" />
+    <Text Include="EncryptedPlayfir.txt" />
     <Text Include="EncryptedVigenere.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>

@@ -156,7 +156,7 @@ int main()
 			 << "1. Øèôğ Öåçàğÿ"				<< endl
 			 << "2. Øèôğ Âèæåíåğà"				<< endl
 			 << "3. Øèôğ Ïëåéôåğà"				<< endl
-			 << "4. Øèôğ Õèëëà"					<< endl
+			 //<< "4. Øèôğ Õèëëà"					<< endl
 			 << "-----------------------------" << endl
 			 << "0. Âûõîä"						<< endl;
 		do
@@ -167,10 +167,10 @@ int main()
 				case '1': CaesarCipher(file);	CLEAR; break;
 				case '2': VigenereCipher(file); CLEAR; break;
 				case '3': PlayfirCipher(file);	CLEAR; break;
-				case '4': HillCipher(file);		CLEAR; break;
+				//case '4': HillCipher(file);		CLEAR; break;
 				case '0': return EXIT_SUCCESS;
 				default: cout << "Unknown command . . ." << endl; break;
 			}
-		} while (UnknownCommand(act, "12340"));
+		} while (UnknownCommand(act, "1230"));
 	}
 }
