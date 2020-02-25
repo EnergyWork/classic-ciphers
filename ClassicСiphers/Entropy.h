@@ -34,27 +34,18 @@ public:
 	{
 		InitAlphabet();
 	}
-	int EntropyCalculation(string text);
+	double EntropyCalculation(string text);
 };
-
-int Entropy::EntropyCalculation(string text)
+double Entropy::EntropyCalculation(string text)
 {
 	for (size_t i = 0; i < text.size(); i++)
-	{
 		for (size_t j = 0; j < LettersFreq.size(); j++)
-		{
 			if (text[i] == LettersFreq[j].letter)
-			{
 				LettersFreq[j].freq++;
-			}
-		}
-	}
 	for (size_t j = 0; j < LettersFreq.size(); j++)
 		LettersFreq[j].freq /= LettersFreq.size();
-	int entropy = 0;
+	double entropy = 0;
 	for (auto let : LettersFreq)
-	{
 		entropy += let.freq * log2(let.freq);
-	}
 	return entropy;
 }
