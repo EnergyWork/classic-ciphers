@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include "Entropy.h"
 using namespace std;
 constexpr int ENCRYPTED = 0;
 constexpr int DECRYPTED = 1;
@@ -13,6 +14,8 @@ class Playfir
 	string text, encText, decText;
 	string encFile = "EncryptedPlayfir.txt", 
 		   decFile = "DecryptedPlayfir.txt";
+	double textEntropy, encEntropy;
+	Entropy ent;
 	Pair index(char a);
 	void ReadFile(string& text, string file);
 	void WriteFile(string text, string file);
@@ -35,4 +38,6 @@ public:
 	}
 	string Encrypted(string file);
 	string Decrypted();
+	double GetTextEntropy() { return textEntropy; }
+	double GetEncEntropy() { return encEntropy; };
 };

@@ -7,6 +7,7 @@
 using namespace std;
 #define CLEAR system("cls")
 #define PAUSE system("pause")
+#define endcase PAUSE; CLEAR; break;
 
 bool UnknownCommand(char act, string list)
 {
@@ -22,40 +23,39 @@ void CaesarCipher(string file)
 	char act;
 	int tmpOffset;
 	Caesar caesarCipher;
+	string tmp;
 	while (true)
 	{
 		cout << "   ШИФР ЦЕЗАРЯ" << endl
-			 << "1. Зашифровка текста из файла Text.txt" << endl
-			 << "2. Расшифровка текста из файла EncryptedCaesar.txt" << endl
-			 << "3. Изменить смещение" << endl
-			 << "0. Главное меню" << endl << endl;
+			<< "1. Зашифровка текста из файла Text.txt" << endl
+			<< "2. Расшифровка текста из файла EncryptedCaesar.txt" << endl
+			<< "3. Изменить смещение" << endl
+			<< "0. Главное меню" << endl << endl;
 		do
 		{
 			act = _getch();
 			switch (act)
 			{
-				case '1':
-					cout << caesarCipher.Encrypted(file) << endl;
-					PAUSE;
-					CLEAR;
-					break;
-				case '2':
-					cout << caesarCipher.Decrypted() << endl;
-					PAUSE;
-					CLEAR;
-					break;
-				case '3': 
-					cout << "Введите новое смещение: ";
-					cin >> tmpOffset;
-					caesarCipher.SetOffset(tmpOffset);
-					cout << "Смещение изменено: " << endl << endl;
-					break;
-				case '0': return;
-				default: cout << "Unknown command . . ." << endl; break;
+			case '1':
+				cout << caesarCipher.Encrypted(file) << endl << endl;
+				cout << "Энтропия" << endl
+					<< "Исходый текст: " << caesarCipher.GetTextEntropy() << endl
+					<< "Зашифрованный текст: " << caesarCipher.GetEncEntropy() << endl;
+				endcase;
+			case '2':
+				cout << caesarCipher.Decrypted() << endl;
+				endcase;
+			case '3':
+				cout << "Введите новое смещение: ";
+				cin >> tmpOffset;
+				caesarCipher.SetOffset(tmpOffset);
+				cout << "Смещение изменено: " << endl << endl;
+				endcase;
+			case '0': return;
+			default: cout << "Unknown command . . ." << endl; break;
 			}
 		} while (UnknownCommand(act, "1230"));
 	}
-	PAUSE;
 }
 void VigenereCipher(string file)
 {
@@ -66,10 +66,10 @@ void VigenereCipher(string file)
 	while (true)
 	{
 		cout << "   ШИФР ВИЖЕНЕРА" << endl
-			 << "1. Зашифровка текста из файла Text.txt" << endl
-			 << "2. Расшифровка текста из файла EncryptedVigenere.txt" << endl
-			 << "3. Изменить ключ шифрования" << endl
-			 << "0. Главное меню" << endl << endl;
+			<< "1. Зашифровка текста из файла Text.txt" << endl
+			<< "2. Расшифровка текста из файла EncryptedVigenere.txt" << endl
+			<< "3. Изменить ключ шифрования" << endl
+			<< "0. Главное меню" << endl << endl;
 		do
 		{
 			act = _getch();
@@ -77,22 +77,19 @@ void VigenereCipher(string file)
 			{
 			case '1':
 				cout << vigenereCipher.Encrypted(file) << endl;
-				PAUSE;
-				CLEAR;
-				break;
+				cout << "Энтропия" << endl
+					<< "Исходый текст: " << vigenereCipher.GetTextEntropy() << endl
+					<< "Зашифрованный текст: " << vigenereCipher.GetEncEntropy() << endl;
+				endcase;
 			case '2':
 				cout << vigenereCipher.Decrypted() << endl;
-				PAUSE;
-				CLEAR;
-				break;
+				endcase;
 			case '3':
 				cout << "Введите новый ключ шифрования: ";
 				cin >> newKey;
 				vigenereCipher.SetKey(newKey);
 				cout << "Ключ обновлен!" << endl << endl;
-				PAUSE;
-				CLEAR;
-				break;
+				endcase;
 			case '0': return;
 			default: cout << "Unknown command . . ." << endl; break;
 			}
@@ -108,10 +105,10 @@ void PlayfirCipher(string file)
 	while (true)
 	{
 		cout << "   ШИФР ПЛЕЙФИРА" << endl
-			 << "1. Зашифровка текста из файла Text.txt" << endl
-			 << "2. Расшифровка текста из файла EncryptedPlayfir.txt" << endl
-			 //<< "3. Изменить ключ шифрования" << endl
-			 << "0. Главное меню" << endl << endl;
+			<< "1. Зашифровка текста из файла Text.txt" << endl
+			<< "2. Расшифровка текста из файла EncryptedPlayfir.txt" << endl
+			//<< "3. Изменить ключ шифрования" << endl
+			<< "0. Главное меню" << endl << endl;
 		do
 		{
 			act = _getch();
@@ -119,19 +116,16 @@ void PlayfirCipher(string file)
 			{
 			case '1':
 				cout << playfirCipher.Encrypted(file) << endl;
-				PAUSE;
-				CLEAR;
-				break;
+				cout << "Энтропия" << endl
+					 << "Исходый текст: " << playfirCipher.GetTextEntropy() << endl
+					 << "Зашифрованный текст: " << playfirCipher.GetEncEntropy() << endl;
+				endcase;
 			case '2':
 				cout << playfirCipher.Decrypted() << endl;
-				PAUSE;
-				CLEAR;
-				break;
+				endcase;
 			case '3':
 
-				PAUSE;
-				CLEAR;
-				break;
+				endcase;
 			case '0': return;
 			default: cout << "Unknown command . . ." << endl; break;
 			}
@@ -151,25 +145,25 @@ int main()
 
 	while (true)
 	{
-		cout << "Выбирете метод шифрования: "	<< endl
-			 << "-----------------------------" << endl
-			 << "1. Шифр Цезаря"				<< endl
-			 << "2. Шифр Виженера"				<< endl
-			 << "3. Шифр Плейфера"				<< endl
-			 //<< "4. Шифр Хилла"					<< endl
-			 << "-----------------------------" << endl
-			 << "0. Выход"						<< endl;
+		cout << "Выбирете метод шифрования: " << endl
+			<< "-----------------------------" << endl
+			<< "1. Шифр Цезаря" << endl
+			<< "2. Шифр Виженера" << endl
+			<< "3. Шифр Плейфера" << endl
+			//<< "4. Шифр Хилла"					<< endl
+			<< "-----------------------------" << endl
+			<< "0. Выход" << endl;
 		do
 		{
 			act = _getch();
 			switch (act)
 			{
-				case '1': CaesarCipher(file);	CLEAR; break;
-				case '2': VigenereCipher(file); CLEAR; break;
-				case '3': PlayfirCipher(file);	CLEAR; break;
+			case '1': CaesarCipher(file);	CLEAR; break;
+			case '2': VigenereCipher(file); CLEAR; break;
+			case '3': PlayfirCipher(file);	CLEAR; break;
 				//case '4': HillCipher(file);		CLEAR; break;
-				case '0': return EXIT_SUCCESS;
-				default: cout << "Unknown command . . ." << endl; break;
+			case '0': return EXIT_SUCCESS;
+			default: cout << "Unknown command . . ." << endl; break;
 			}
 		} while (UnknownCommand(act, "1230"));
 	}

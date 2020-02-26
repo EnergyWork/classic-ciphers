@@ -17,7 +17,7 @@ int Caesar::GetOffset()
 {
 	return offset;
 }
-void Caesar::ReadFile(string &text, string file)
+void Caesar::ReadFile(string& text, string file)
 {
 	ifstream in(file);
 	string tmp;
@@ -32,6 +32,8 @@ void Caesar::ReadFile(string &text, string file)
 string Caesar::Encrypted(string file)
 {
 	ReadFile(text, file);
+	textEntropy = ent.EntropyCalculation(text);
+	encText.clear();
 	int loop;
 	transform(text.begin(), text.end(), text.begin(), tolower);
 	for (size_t letter = 0; letter < text.size(); letter++)
@@ -41,6 +43,7 @@ string Caesar::Encrypted(string file)
 			loop = alphabet.size();
 		encText += alphabet[index(text[letter]) + GetOffset() - loop];
 	}
+	encEntropy = ent.EntropyCalculation(encText);
 	ofstream out(encFile);
 	out << encText;
 	out.close();

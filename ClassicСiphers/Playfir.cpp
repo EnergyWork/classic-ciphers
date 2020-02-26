@@ -16,6 +16,9 @@ void Playfir::AnalyzeEnc()
 		for (size_t i = 0; i < text.size() - 1; i++)
 			if (text[i] == text[i + 1])
 				text.insert(text.begin() + i + 1, 'x');
+			else if (text[i] == 'j')
+				text[i] = 'i';
+			else continue;
 		flag = true;
 		if (text.size() % 2 != 0)
 		{
@@ -38,7 +41,7 @@ void Playfir::Analyze(int target)
 		case DECRYPTED: AnalyzeDec(); break;
 	}
 }
-void Playfir::ReadFile(string& text, string file)
+void Playfir::ReadFile(string &text, string file)
 {
 	ifstream in(file);
 	string tmp;
@@ -95,9 +98,12 @@ void Playfir::EncryptedPairLetters(char l, char r)
 string Playfir::Encrypted(string file)
 {
 	ReadFile(text, file);
+	textEntropy = ent.EntropyCalculation(text);
+	encText.clear();
 	Analyze(ENCRYPTED);
 	for (size_t letter = 0; letter < text.size() - 1; letter += 2)
 		EncryptedPairLetters(text[letter], text[letter + 1]);
+	encEntropy = ent.EntropyCalculation(encText);
 	WriteFile(encText, encFile);
 	return encText;
 }
@@ -140,6 +146,7 @@ void Playfir::DecryptedPairLetters(char l, char r)
 string Playfir::Decrypted()
 {
 	ReadFile(text, encFile);
+	decText.clear();
 	for (size_t letter = 0; letter < text.size() - 1; letter += 2)
 		DecryptedPairLetters(text[letter], text[letter + 1]);
 	Analyze(DECRYPTED);

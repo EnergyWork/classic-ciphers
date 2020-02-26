@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 using namespace std;
@@ -25,6 +26,11 @@ class Entropy
 				{ 'y', 0 },	{ 'z', 0 }
 		};
 	}
+	void Clear()
+	{
+		for (auto &el : LettersFreq)
+			el.freq = 0;
+	}
 public:
 	Entropy()
 	{
@@ -34,18 +40,20 @@ public:
 	{
 		InitAlphabet();
 	}
-	double EntropyCalculation(string text);
-};
-double Entropy::EntropyCalculation(string text)
-{
-	for (size_t i = 0; i < text.size(); i++)
+	double EntropyCalculation(string text)
+	{
+		Clear();
+		for (size_t i = 0; i < text.size(); i++)
+			for (size_t j = 0; j < LettersFreq.size(); j++)
+				if (text[i] == LettersFreq[j].letter)
+					LettersFreq[j].freq++;
 		for (size_t j = 0; j < LettersFreq.size(); j++)
-			if (text[i] == LettersFreq[j].letter)
-				LettersFreq[j].freq++;
-	for (size_t j = 0; j < LettersFreq.size(); j++)
-		LettersFreq[j].freq /= LettersFreq.size();
-	double entropy = 0;
-	for (auto let : LettersFreq)
-		entropy += let.freq * log2(let.freq);
-	return entropy;
-}
+			LettersFreq[j].freq /= text.size();
+		double entropy = 0;
+		for (auto let : LettersFreq)
+			if (let.freq > 0)
+				entropy += let.freq * log2(let.freq);
+			else continue;
+		return entropy;
+	}
+};

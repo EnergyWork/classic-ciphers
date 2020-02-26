@@ -9,7 +9,7 @@ int Vigenere::index(char a)
 	}
 	return NULL;
 }
-void Vigenere::ReadFile(string &text, string file)
+void Vigenere::ReadFile(string& text, string file)
 {
 	ifstream in(file);
 	string tmp;
@@ -32,6 +32,8 @@ string Vigenere::GetKey()
 string Vigenere::Encrypted(string file)
 {
 	ReadFile(text, file);
+	textEntropy = ent.EntropyCalculation(text);
+	encText.clear();
 	int loop = 0;
 	for (size_t letter = 0, l = 0; letter < text.size(); letter++, l++)
 	{
@@ -42,6 +44,7 @@ string Vigenere::Encrypted(string file)
 			loop = alphabet.size();
 		encText += alphabet[index(text[letter]) + index(key[l]) - loop];
 	}
+	encEntropy = ent.EntropyCalculation(encText);
 	ofstream out(encFile);
 	out << encText;
 	out.close();
